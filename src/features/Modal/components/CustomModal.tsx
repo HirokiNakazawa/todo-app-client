@@ -1,5 +1,7 @@
 import { Box, Modal } from "@mui/material";
 import { FC } from "react";
+import ModalHeaderContainer from "../containers/ModalHeaderContainer";
+import ModalFooterContainer from "../containers/ModalFooterContainer";
 
 /**
  * カスタムモーダルコンポーネントの型定義
@@ -44,7 +46,10 @@ const CustomModal: FC<CustomModalProps> = (props: CustomModalProps) => {
             p: 2,
             gap: 2,
           }}
-        ></Box>
+        >
+          <ModalHeaderContainer />
+          <ModalFooterContainer />
+        </Box>
       </Box>
     </Modal>
   );

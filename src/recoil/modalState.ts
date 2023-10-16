@@ -16,3 +16,8 @@ export const isLoginState = atom<boolean>({
   key: "isLoginModal",
   default: false,
 });
+
+export const modalErrorMsgState = atom<string>({
+  key: "modalErrorMsg",
+  default: "",
+});

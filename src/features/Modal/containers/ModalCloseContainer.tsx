@@ -18,6 +18,7 @@ const ModalCloseContainer: FC = () => {
   const handleClose = (): void => {
     console.log("閉じるボタンがクリックされました");
     resetService.resetModalParams();
+    resetService.resetAuthenticationParams();
   };
 
   return <ModalButton text="閉じる" handleClick={handleClose} />;

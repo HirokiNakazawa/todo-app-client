@@ -2,8 +2,9 @@ import { FC } from "react";
 
 import { useRecoilValue } from "recoil";
 
-import { ModalState } from "../../../types";
+import { AuthenticationFunctions, ModalState } from "../../../types";
 import { modalState } from "../../../recoil";
+import { useAuthentication } from "../../Authentication/hooks/useAuthentication";
 import ModalButton from "../components/ModalButton";
 
 /**
@@ -12,6 +13,8 @@ import ModalButton from "../components/ModalButton";
 const ModalLoginContainer: FC = () => {
   const modal = useRecoilValue<ModalState>(modalState);
 
+  const authenticationService: AuthenticationFunctions = useAuthentication();
+
   /**
    * クリック時に状態を処理するコールバック
    *
@@ -19,6 +22,7 @@ const ModalLoginContainer: FC = () => {
    */
   const handleLogin = (): void => {
     console.log("ログインボタンがクリックされました");
+    authenticationService.login();
   };
 
   return <ModalButton text={modal.buttonText} handleClick={handleLogin} />;

@@ -1,5 +1,7 @@
-import { Box, Modal } from "@mui/material";
 import { FC } from "react";
+
+import { Box, Modal } from "@mui/material";
+
 import ModalHeaderContainer from "../containers/ModalHeaderContainer";
 import ModalFooterContainer from "../containers/ModalFooterContainer";
 

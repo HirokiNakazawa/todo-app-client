@@ -1,5 +1,6 @@
-import { Button } from "@mui/material";
 import { FC } from "react";
+
+import { Button } from "@mui/material";
 
 /**
  * モーダルのボタンコンポーネントの型定義

@@ -4,6 +4,7 @@ import { Box, Modal } from "@mui/material";
 
 import ModalHeaderContainer from "../containers/ModalHeaderContainer";
 import ModalFooterContainer from "../containers/ModalFooterContainer";
+import ModalAuthContent from "./ModalAuthContent";
 
 /**
  * カスタムモーダルコンポーネントの型定義
@@ -50,6 +51,7 @@ const CustomModal: FC<CustomModalProps> = (props: CustomModalProps) => {
           }}
         >
           <ModalHeaderContainer />
+          {isRegister || isLogin ? <ModalAuthContent /> : null}
           <ModalFooterContainer />
         </Box>
       </Box>

@@ -13,3 +13,11 @@ export type ModalState = {
 export declare type ResetFunctions = {
   resetModalParams: () => void;
 };
+
+/**
+ * ユーザー認証に関するカスタムフック
+ */
+export declare type AuthenticationFunctions = {
+  register: () => Promise<void>;
+  login: () => Promise<void>;
+};

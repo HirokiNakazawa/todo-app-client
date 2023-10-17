@@ -7,6 +7,12 @@ export type ModalState = {
   buttonText: string;
 };
 
+export type UserState = {
+  id: number;
+  name: string;
+  isLoggedIn: boolean;
+};
+
 /**
  * フォームデータ
  */

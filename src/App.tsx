@@ -9,16 +9,14 @@ import BodyContainer from "./features/containers/BodyContainer";
 
 const App: FC = () => {
   return (
-    <>
-      <RecoilRoot>
-        <Box sx={{ display: "flex" }}>
-          <CssBaseline />
-          <ModalContainer />
-          <HeaderContainer />
-          <BodyContainer />
-        </Box>
-      </RecoilRoot>
-    </>
+    <RecoilRoot>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <ModalContainer />
+        <HeaderContainer />
+        <BodyContainer />
+      </Box>
+    </RecoilRoot>
   );
 };
 

@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import { Box, FormControl, Typography } from "@mui/material";
+import InputCategoryContainer from "../containers/InputCategoryContainer";
 
 /**
  * カテゴリ登録エリアコンポーネントの型定義
@@ -35,6 +36,7 @@ const CategoryRegistration: FC<CategoryRegistrationProps> = (props: CategoryRegi
         <Typography variant="h6" color="red">
           {errorMsg}
         </Typography>
+        <InputCategoryContainer />
       </Box>
     </FormControl>
   );

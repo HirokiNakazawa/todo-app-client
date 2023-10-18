@@ -1,5 +1,8 @@
-import { Box, Drawer, Toolbar } from "@mui/material";
 import { FC } from "react";
+
+import { Box, Drawer, Toolbar } from "@mui/material";
+
+import CategoryRegistrationContainer from "../containers/CategoryRegistrationContainer";
 
 /**
  * サイドバーコンポーネントの型定義
@@ -28,7 +31,9 @@ const Sidebar: FC<SideberProps> = (props: SideberProps) => {
       }}
     >
       <Toolbar />
-      <Box sx={{ overflow: "auto" }}></Box>
+      <Box sx={{ overflow: "auto" }}>
+        <CategoryRegistrationContainer />
+      </Box>
     </Drawer>
   );
 };

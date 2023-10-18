@@ -1,9 +1,17 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
-import { AuthApiFunctions, AuthenticationFunctions, PostAuthResponse, ResetFunctions, UserState } from "../../../types";
+import {
+  AuthApiFunctions,
+  AuthenticationFunctions,
+  ConvertFunctions,
+  PostAuthResponse,
+  ResetFunctions,
+  UserState,
+} from "../../../types";
 import { authNameState, authPasswordState, modalErrorMsgState, userState } from "../../../recoil";
 import { authApi } from "../api/authApi";
 import { useReset } from "../../../hooks/useReset";
+import { useConvert } from "../../../hooks/useConvert";
 
 /**
  * ユーザー認証に関するカスタムフックです。
@@ -18,6 +26,7 @@ const useAuthentication = (): AuthenticationFunctions => {
 
   const apiService: AuthApiFunctions = authApi();
   const resetService: ResetFunctions = useReset();
+  const convertService: ConvertFunctions = useConvert();
 
   /**
    * ユーザー登録を行う関数
@@ -56,28 +65,14 @@ const useAuthentication = (): AuthenticationFunctions => {
   /**
    * ユーザー登録・ログインに成功した場合に実行される関数
    *
-   * @param {PostAuthResponse} response - ユーザー情報
+   * @param {PostAuthResponse} response - 認証APIレスポンス
    * @returns {void}
    */
   const handleAuthentication = (response: PostAuthResponse): void => {
-    setUserInfomation(response);
+    setUser(convertService.convertToUserState(response));
 
     resetService.resetModalParams();
     resetService.resetAuthenticationParams();
-  };
-
-  /**
-   * ユーザー情報をRecoilアトムに格納する関数
-   *
-   * @param {PostAuthResponse} response - ユーザー情報
-   * @returns {void}
-   */
-  const setUserInfomation = (response: PostAuthResponse): void => {
-    setUser({
-      id: response.id,
-      name: response.name,
-      isLoggedIn: true,
-    });
   };
 
   return { register, login };

@@ -24,10 +24,14 @@ export type AuthFormData = {
 /**
  * APIレスポンス
  */
-export type PostAuthResponse = {
-  id: number;
-  name: string;
-};
+export type PostAuthResponse =
+  | {
+      id: number;
+      name: string;
+    }
+  | {
+      message: string;
+    };
 
 /**
  * 状態の初期化に関するカスタムフック
@@ -51,4 +55,18 @@ export declare type AuthApiFunctions = {
 export declare type AuthenticationFunctions = {
   register: () => Promise<void>;
   login: () => Promise<void>;
+};
+
+/**
+ * 状態の更新に関するカスタムフックの型定義
+ */
+export declare type UpdateFunctions = {
+  updateUserCategories: () => Promise<void>;
+};
+
+/**
+ * APIレスポンスコンバートカスタムフックの型定義
+ */
+export declare type ConvertFunctions = {
+  convertToUserState: (response: PostAuthResponse) => UserState;
 };

@@ -21,6 +21,11 @@ export type AuthFormData = {
   password: string;
 };
 
+export type CreateCategoryFormData = {
+  user_id: number;
+  category: string;
+};
+
 /**
  * APIレスポンス
  */
@@ -32,6 +37,12 @@ export type PostAuthResponse =
   | {
       message: string;
     };
+
+export type PostCreateCategoryResponse =
+  | {
+      category: string;
+    }
+  | { message: string };
 
 /**
  * 状態の初期化に関するカスタムフック
@@ -69,4 +80,18 @@ export declare type UpdateFunctions = {
  */
 export declare type ConvertFunctions = {
   convertToUserState: (response: PostAuthResponse) => UserState;
+};
+
+/**
+ * カテゴリ登録に関するAPI関数の型定義
+ */
+export declare type CreateCategoryApiFunctions = {
+  postCreateCategory: (data: CreateCategoryFormData) => Promise<PostCreateCategoryResponse>;
+};
+
+/**
+ * カテゴリ登録に関するカスタムフックの型定義
+ */
+export declare type CreateCategoryFunctions = {
+  createCategory: () => Promise<void>;
 };

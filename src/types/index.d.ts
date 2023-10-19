@@ -18,6 +18,15 @@ export type UserCategoryState = {
   category: string;
 };
 
+export type UserTodoState = {
+  id: number;
+  categoryId: number;
+  todo: string;
+  limitDate: string;
+  isCompleted: boolean;
+  category: string;
+};
+
 /**
  * フォームデータ
  */
@@ -48,6 +57,15 @@ export type GetUserCategoryListResponse = {
   category: string;
 };
 
+export type GetUserTodoListResponse = {
+  id: number;
+  category_id: number;
+  todo: string;
+  limit_date: string;
+  is_completed: boolean;
+  category: string;
+};
+
 export type PostCreateCategoryResponse =
   | {
       category: string;
@@ -59,6 +77,15 @@ export type PostCreateCategoryResponse =
  */
 export declare type ApiFunctions = {
   getUserCategoryList: (id: number) => Promise<GetUserCategoryListResponse[]>;
+  getUserTodoList: (id: number) => Promise<GetUserTodoListResponse[]>;
+};
+
+/**
+ * APIレスポンスコンバートカスタムフックの型定義
+ */
+export declare type ConvertFunctions = {
+  convertToUserState: (response: PostAuthResponse) => UserState;
+  convertToUserTodoState: (response: GetUserTodoListResponse[]) => UserTodoState[];
 };
 
 /**
@@ -67,6 +94,14 @@ export declare type ApiFunctions = {
 export declare type ResetFunctions = {
   resetModalParams: () => void;
   resetAuthenticationParams: () => void;
+};
+
+/**
+ * 状態の更新に関するカスタムフックの型定義
+ */
+export declare type UpdateFunctions = {
+  updateUserCategoryList: (id: number) => Promise<void>;
+  updateUserTodoList: (id: number) => Promise<void>;
 };
 
 /**
@@ -83,20 +118,6 @@ export declare type AuthApiFunctions = {
 export declare type AuthenticationFunctions = {
   register: () => Promise<void>;
   login: () => Promise<void>;
-};
-
-/**
- * 状態の更新に関するカスタムフックの型定義
- */
-export declare type UpdateFunctions = {
-  updateUserCategoryList: (id: number) => Promise<void>;
-};
-
-/**
- * APIレスポンスコンバートカスタムフックの型定義
- */
-export declare type ConvertFunctions = {
-  convertToUserState: (response: PostAuthResponse) => UserState;
 };
 
 /**

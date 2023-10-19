@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import SidebarContainer from "../Sidebar/containers/SidebarContainer";
+import MainContainer from "../Main/containers/MainContainer";
 
 /**
  * ボディコンポーネントの型定義
@@ -24,6 +25,7 @@ const Body: FC<BodyProps> = (props: BodyProps) => {
       {isLoggedIn ? (
         <>
           <SidebarContainer />
+          <MainContainer />
         </>
       ) : null}
     </>

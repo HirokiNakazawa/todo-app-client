@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-import { UserCategoryState, UserState } from "../types";
+import { UserCategoryState, UserState, UserTodoState } from "../types";
 
 export const userState = atom<UserState>({
   key: "user",
@@ -9,5 +9,10 @@ export const userState = atom<UserState>({
 
 export const userCategoryListState = atom<UserCategoryState[]>({
   key: "userCategoryList",
+  default: [],
+});
+
+export const userTodoListState = atom<UserTodoState[]>({
+  key: "userTodoList",
   default: [],
 });

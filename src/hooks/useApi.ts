@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { API_BASE_URL } from "../config/config";
-import { ApiFunctions, GetUserCategoryListResponse } from "../types";
+import { ApiFunctions, GetUserCategoryListResponse, GetUserTodoListResponse } from "../types";
 
 /**
  * 汎用API関数をハンドリングするカスタムフックです。
@@ -26,7 +26,24 @@ const useApi = (): ApiFunctions => {
     }
   };
 
-  return { getUserCategoryList };
+  /**
+   * ユーザー別タスク一覧を取得する関数
+   *
+   * @param {number} id - ユーザーID
+   * @returns {Promise<GetUserTodoListResponse[]>} タスク一覧取得の結果を表すPromise
+   * @throws {Error} API呼び出し時のエラー
+   */
+  const getUserTodoList = async (id: number): Promise<GetUserTodoListResponse[]> => {
+    try {
+      const url = `${API_BASE_URL}/todos/${id}`;
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  return { getUserCategoryList, getUserTodoList };
 };
 
 export { useApi };

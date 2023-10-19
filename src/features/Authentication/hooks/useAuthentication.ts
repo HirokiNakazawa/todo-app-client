@@ -91,6 +91,7 @@ const useAuthentication = (): AuthenticationFunctions => {
    */
   const fetchData = async (user: UserState): Promise<void> => {
     await updateService.updateUserCategoryList(user.id);
+    await updateService.updateUserTodoList(user.id);
   };
 
   return { register, login };

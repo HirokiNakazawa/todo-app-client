@@ -1,8 +1,9 @@
 import { useSetRecoilState } from "recoil";
 
-import { ApiFunctions, UpdateFunctions, UserCategoryState } from "../types";
-import { userCategoryListState } from "../recoil";
+import { ApiFunctions, ConvertFunctions, UpdateFunctions, UserCategoryState, UserTodoState } from "../types";
+import { userCategoryListState, userTodoListState } from "../recoil";
 import { useApi } from "./useApi";
+import { useConvert } from "./useConvert";
 
 /**
  * 状態の更新に関するカスタムフックです。
@@ -11,11 +12,13 @@ import { useApi } from "./useApi";
  */
 const useUpdate = (): UpdateFunctions => {
   const setUserCategoryList = useSetRecoilState<UserCategoryState[]>(userCategoryListState);
+  const setUserTodoList = useSetRecoilState<UserTodoState[]>(userTodoListState);
 
   const apiService: ApiFunctions = useApi();
+  const convertService: ConvertFunctions = useConvert();
 
   /**
-   * ユーザー毎のカテゴリ一覧を更新する関数
+   * ユーザー別カテゴリ一覧を更新する関数
    *
    * @param {number} id - ログインユーザーのID
    * @returns {Promise<void>}
@@ -30,7 +33,23 @@ const useUpdate = (): UpdateFunctions => {
     }
   };
 
-  return { updateUserCategoryList };
+  /**
+   * ユーザー別タスク一覧を更新する関数
+   *
+   * @param {number} id - ログインユーザーのID
+   * @returns {Promise<void>}
+   */
+  const updateUserTodoList = async (id: number): Promise<void> => {
+    try {
+      const response = await apiService.getUserTodoList(id);
+      console.log(response);
+      setUserTodoList(convertService.convertToUserTodoState(response));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { updateUserCategoryList, updateUserTodoList };
 };
 
 export { useUpdate };

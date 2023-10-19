@@ -43,7 +43,8 @@ const useUpdate = (): UpdateFunctions => {
     try {
       const response = await apiService.getUserTodoList(id);
       console.log(response);
-      setUserTodoList(convertService.convertToUserTodoState(response));
+      const userTodoList = convertService.convertToUserTodoState(response);
+      setUserTodoList(userTodoList);
     } catch (error) {
       console.log(error);
     }

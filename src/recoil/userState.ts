@@ -16,3 +16,11 @@ export const userTodoListState = atom<UserTodoState[]>({
   key: "userTodoList",
   default: [],
 });
+
+export const inCompletedTodoListState = atom<UserTodoState[]>({
+  key: "inCompletedTodoList",
+});
+
+export const completedTodoListState = atom<UserTodoState[]>({
+  key: "completedTodoList",
+});

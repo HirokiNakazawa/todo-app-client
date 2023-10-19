@@ -27,6 +27,11 @@ export type UserTodoState = {
   category: string;
 };
 
+export type CurrentCategoryState = {
+  id: number;
+  name: string;
+};
+
 /**
  * フォームデータ
  */

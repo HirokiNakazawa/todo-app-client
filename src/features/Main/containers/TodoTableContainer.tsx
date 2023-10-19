@@ -1,7 +1,9 @@
 import { FC } from "react";
 
-import { UserTodoState } from "../../../types";
+import { CurrentCategoryState, UserTodoState } from "../../../types";
 import TodoTable from "../components/TodoTable";
+import { useRecoilValue } from "recoil";
+import { currentCategoryState } from "../../../recoil";
 
 /**
  * タスク一覧テーブルコンテナコンポーネントの型定義
@@ -22,7 +24,9 @@ type TodoTableContainerProps = {
 const TodoTableContainer: FC<TodoTableContainerProps> = (props: TodoTableContainerProps) => {
   const { status, todoList } = props;
 
-  return <TodoTable status={status} todoList={todoList} />;
+  const currentCategory = useRecoilValue<CurrentCategoryState>(currentCategoryState);
+
+  return <TodoTable status={status} todoList={todoList} currentCategory={currentCategory} />;
 };
 
 export default TodoTableContainer;

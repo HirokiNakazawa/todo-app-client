@@ -1,17 +1,20 @@
 import { FC } from "react";
 
 import { Box, Toolbar, Typography } from "@mui/material";
-import { UserTodoState } from "../../../types";
+
+import { CurrentCategoryState, UserTodoState } from "../../../types";
 import TodoTableContainer from "../containers/TodoTableContainer";
 import CreateTodoContainer from "../containers/CreateTodoContainer";
 
 /**
  * メインコンテンツコンポーネントの型定義
  *
+ * @property {CurrentCategoryState} currentCategory - 選択中のカテゴリ
  * @property {UserTodoState[]} completedTodoList - 完了したタスク一覧
  * @property {UserTodoState[]} inCompletedTodoList - 未完了のタスク一覧
  */
 type MainProps = {
+  currentCategory: CurrentCategoryState;
   completedTodoList: UserTodoState[];
   inCompletedTodoList: UserTodoState[];
 };
@@ -22,7 +25,7 @@ type MainProps = {
  * @param {MainProps} props
  */
 const Main: FC<MainProps> = (props: MainProps) => {
-  const { completedTodoList, inCompletedTodoList } = props;
+  const { currentCategory, completedTodoList, inCompletedTodoList } = props;
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", flexGrow: 1, p: 2 }}>
@@ -36,7 +39,7 @@ const Main: FC<MainProps> = (props: MainProps) => {
           p: 2,
         }}
       >
-        <Typography>カテゴリ</Typography>
+        <Typography>カテゴリ：{currentCategory.name}</Typography>
         <CreateTodoContainer />
       </Box>
       <TodoTableContainer status="未完了" todoList={inCompletedTodoList} />

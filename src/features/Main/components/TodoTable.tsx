@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { UserTodoState } from "../../../types";
+import { CurrentCategoryState, UserTodoState } from "../../../types";
 import {
   Box,
   Paper,
@@ -19,10 +19,12 @@ import TodoTableRow from "./TodoTableRow";
  *
  * @property {string} status - タスクの状態
  * @property {UserTodoState[]} todoList - タスク一覧
+ * @property {CurrentCategoryState} currentCategory - 選択中のカテゴリ
  */
 type TodoTableProps = {
   status: string;
   todoList: UserTodoState[];
+  currentCategory: CurrentCategoryState;
 };
 
 /**
@@ -31,7 +33,7 @@ type TodoTableProps = {
  * @param {TodoTableProps} props
  */
 const TodoTable: FC<TodoTableProps> = (props: TodoTableProps) => {
-  const { status, todoList } = props;
+  const { status, todoList, currentCategory } = props;
 
   return (
     <>
@@ -52,7 +54,7 @@ const TodoTable: FC<TodoTableProps> = (props: TodoTableProps) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TodoTableRow todoList={todoList} />
+            <TodoTableRow todoList={todoList} currentCategory={currentCategory} />
           </TableBody>
         </Table>
       </TableContainer>

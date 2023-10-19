@@ -3,6 +3,7 @@ import { FC } from "react";
 import { TableCell, TableRow } from "@mui/material";
 
 import { UserTodoState } from "../../../types";
+import dayjs from "dayjs";
 
 /**
  * タスク一覧テーブルのテーブルデータコンポーネント型定義
@@ -27,7 +28,11 @@ const TodoTableRow: FC<TodoTableRowProps> = (props: TodoTableRowProps) => {
         <TableRow key={item.id}>
           <TableCell align="center">{item.category}</TableCell>
           <TableCell>{item.todo}</TableCell>
-          <TableCell align="center">{item.limitDate}</TableCell>
+          <TableCell align="center">
+            {item.limitDate ? dayjs(item.limitDate).format("YYYY/MM/DD") : "期限なし"}
+          </TableCell>
+          <TableCell></TableCell>
+          <TableCell></TableCell>
         </TableRow>
       ))}
     </>

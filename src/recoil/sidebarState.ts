@@ -6,6 +6,6 @@ export const sidebarErrorMsgState = atom<string>({
 });
 
 export const sidebarCategoryState = atom<string>({
-  key: "sidebarCategoryState",
+  key: "sidebarCategory",
   default: "",
 });

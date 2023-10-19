@@ -13,7 +13,7 @@ const useCreateCategory = (): CreateCategoryFunctions => {
   const user = useRecoilValue<UserState>(userState);
   const category = useRecoilValue<string>(sidebarCategoryState);
 
-  const api: CreateCategoryApiFunctions = createCategoryApi();
+  const apiService: CreateCategoryApiFunctions = createCategoryApi();
 
   /**
    * カテゴリ登録を行う関数
@@ -23,7 +23,7 @@ const useCreateCategory = (): CreateCategoryFunctions => {
   const createCategory = async (): Promise<void> => {
     const data = { user_id: user.id, category: category };
     try {
-      const response = await api.postCreateCategory(data);
+      const response = await apiService.postCreateCategory(data);
       console.log(response);
     } catch (error) {
       console.log(error);

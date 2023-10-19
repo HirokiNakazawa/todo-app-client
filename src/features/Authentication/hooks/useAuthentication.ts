@@ -6,12 +6,14 @@ import {
   ConvertFunctions,
   PostAuthResponse,
   ResetFunctions,
+  UpdateFunctions,
   UserState,
 } from "../../../types";
 import { authNameState, authPasswordState, modalErrorMsgState, userState } from "../../../recoil";
 import { authApi } from "../api/authApi";
 import { useReset } from "../../../hooks/useReset";
 import { useConvert } from "../../../hooks/useConvert";
+import { useUpdate } from "../../../hooks/useUpdate";
 
 /**
  * ユーザー認証に関するカスタムフックです。
@@ -25,6 +27,7 @@ const useAuthentication = (): AuthenticationFunctions => {
   const setUser = useSetRecoilState<UserState>(userState);
 
   const apiService: AuthApiFunctions = authApi();
+  const updateService: UpdateFunctions = useUpdate();
   const resetService: ResetFunctions = useReset();
   const convertService: ConvertFunctions = useConvert();
 
@@ -66,13 +69,28 @@ const useAuthentication = (): AuthenticationFunctions => {
    * ユーザー登録・ログインに成功した場合に実行される関数
    *
    * @param {PostAuthResponse} response - 認証APIレスポンス
-   * @returns {void}
+   * @returns {Promise<void>}
    */
-  const handleAuthentication = (response: PostAuthResponse): void => {
-    setUser(convertService.convertToUserState(response));
+  const handleAuthentication = async (response: PostAuthResponse): Promise<void> => {
+    const userData = convertService.convertToUserState(response);
+    if (userData.id !== 0) {
+      setUser(userData);
 
-    resetService.resetModalParams();
-    resetService.resetAuthenticationParams();
+      resetService.resetModalParams();
+      resetService.resetAuthenticationParams();
+
+      await fetchData(userData);
+    }
+  };
+
+  /**
+   * ログインに成功後、アプリで使用する情報をRecoilアトムに格納する関数
+   *
+   * @param {UserState} user - ユーザー情報
+   * @returns {Promise<void>}
+   */
+  const fetchData = async (user: UserState): Promise<void> => {
+    await updateService.updateUserCategoryList(user.id);
   };
 
   return { register, login };

@@ -13,6 +13,11 @@ export type UserState = {
   isLoggedIn: boolean;
 };
 
+export type UserCategoryState = {
+  id: number;
+  category: string;
+};
+
 /**
  * フォームデータ
  */
@@ -38,11 +43,23 @@ export type PostAuthResponse =
       message: string;
     };
 
+export type GetUserCategoryListResponse = {
+  id: number;
+  category: string;
+};
+
 export type PostCreateCategoryResponse =
   | {
       category: string;
     }
   | { message: string };
+
+/**
+ * 汎用API関数の型定義
+ */
+export declare type ApiFunctions = {
+  getUserCategoryList: (id: number) => Promise<GetUserCategoryListResponse[]>;
+};
 
 /**
  * 状態の初期化に関するカスタムフック
@@ -72,7 +89,7 @@ export declare type AuthenticationFunctions = {
  * 状態の更新に関するカスタムフックの型定義
  */
 export declare type UpdateFunctions = {
-  updateUserCategories: () => Promise<void>;
+  updateUserCategoryList: (id: number) => Promise<void>;
 };
 
 /**

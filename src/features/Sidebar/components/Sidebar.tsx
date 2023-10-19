@@ -3,6 +3,7 @@ import { FC } from "react";
 import { Box, Drawer, Toolbar } from "@mui/material";
 
 import CategoryRegistrationContainer from "../containers/CategoryRegistrationContainer";
+import CategoryListContainer from "../containers/CategoryListContainer";
 
 /**
  * サイドバーコンポーネントの型定義
@@ -33,6 +34,7 @@ const Sidebar: FC<SideberProps> = (props: SideberProps) => {
       <Toolbar />
       <Box sx={{ overflow: "auto" }}>
         <CategoryRegistrationContainer />
+        <CategoryListContainer />
       </Box>
     </Drawer>
   );

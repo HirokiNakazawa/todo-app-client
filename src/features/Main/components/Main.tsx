@@ -3,6 +3,7 @@ import { FC } from "react";
 import { Box, Toolbar, Typography } from "@mui/material";
 import { UserTodoState } from "../../../types";
 import TodoTableContainer from "../containers/TodoTableContainer";
+import CreateTodoContainer from "../containers/CreateTodoContainer";
 
 /**
  * メインコンテンツコンポーネントの型定義
@@ -36,6 +37,7 @@ const Main: FC<MainProps> = (props: MainProps) => {
         }}
       >
         <Typography>カテゴリ</Typography>
+        <CreateTodoContainer />
       </Box>
       <TodoTableContainer status="未完了" todoList={inCompletedTodoList} />
       <TodoTableContainer status="完了" todoList={completedTodoList} />

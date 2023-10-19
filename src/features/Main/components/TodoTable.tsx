@@ -12,6 +12,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import TodoTableRow from "./TodoTableRow";
 
 /**
  * タスク一覧テーブルコンポーネントの型定義
@@ -51,13 +52,7 @@ const TodoTable: FC<TodoTableProps> = (props: TodoTableProps) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {todoList.map((item) => (
-              <TableRow>
-                <TableCell>{item.category}</TableCell>
-                <TableCell>{item.todo}</TableCell>
-                <TableCell>{item.limitDate}</TableCell>
-              </TableRow>
-            ))}
+            <TodoTableRow todoList={todoList} />
           </TableBody>
         </Table>
       </TableContainer>

@@ -3,7 +3,7 @@ import { ChangeEvent, FC } from "react";
 import { useRecoilState } from "recoil";
 
 import { authNameState } from "../../../recoil";
-import InputAuthName from "../../Form/InputAuthName";
+import InputAuthName from "../components/InputAuthName";
 
 /**
  * 認証ユーザー名の入力フォームコンテナコンポーネントです。

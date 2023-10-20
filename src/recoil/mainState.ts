@@ -9,3 +9,8 @@ export const currentCategoryState = atom<CurrentCategoryState>({
     name: "全て",
   },
 });
+
+export const todoState = atom<string>({
+  key: "todo",
+  default: "",
+});

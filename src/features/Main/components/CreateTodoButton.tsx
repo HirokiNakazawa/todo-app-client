@@ -6,10 +6,10 @@ import { AddCircleOutline } from "@mui/icons-material";
 /**
  * タスク登録ボタンコンポーネントの型定義
  *
- * @property {() => Promise<void>} handleClick - クリックした時に発火するコールバック
+ * @property {() => void} handleClick - クリックした時に発火するコールバック
  */
 type CreateTodoButtonProps = {
-  handleClick: () => Promise<void>;
+  handleClick: () => void;
 };
 
 /**

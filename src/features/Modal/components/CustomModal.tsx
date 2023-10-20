@@ -5,6 +5,7 @@ import { Box, Modal } from "@mui/material";
 import ModalHeaderContainer from "../containers/ModalHeaderContainer";
 import ModalFooterContainer from "../containers/ModalFooterContainer";
 import ModalAuthContent from "./ModalAuthContent";
+import ModalTodoContent from "./ModalTodoContent";
 
 /**
  * カスタムモーダルコンポーネントの型定義
@@ -12,11 +13,13 @@ import ModalAuthContent from "./ModalAuthContent";
  * @property {boolean} isOpen - モーダル開閉フラグ
  * @property {boolean} isRegister - ユーザー登録フラグ
  * @property {boolean} isLogin - ログインフラグ
+ * @property {boolean} isCreateTodo - タスク作成フラグ
  */
 type CustomModalProps = {
   isOpen: boolean;
   isRegister: boolean;
   isLogin: boolean;
+  isCreateTodo: boolean;
 };
 
 /**
@@ -25,7 +28,7 @@ type CustomModalProps = {
  * @param {CustomModalProps} props
  */
 const CustomModal: FC<CustomModalProps> = (props: CustomModalProps) => {
-  const { isOpen, isRegister, isLogin } = props;
+  const { isOpen, isRegister, isLogin, isCreateTodo } = props;
 
   return (
     <Modal open={isOpen}>
@@ -52,6 +55,7 @@ const CustomModal: FC<CustomModalProps> = (props: CustomModalProps) => {
         >
           <ModalHeaderContainer />
           {isRegister || isLogin ? <ModalAuthContent /> : null}
+          {isCreateTodo ? <ModalTodoContent /> : null}
           <ModalFooterContainer />
         </Box>
       </Box>

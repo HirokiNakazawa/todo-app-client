@@ -3,7 +3,7 @@ import { ChangeEvent, FC } from "react";
 import { useRecoilState } from "recoil";
 
 import { sidebarCategoryState } from "../../../recoil";
-import InputCategory from "../../Form/InputCategory";
+import InputCategory from "../components/InputCategory";
 
 /**
  * カテゴリの入力フォームコンテナコンポーネントです。

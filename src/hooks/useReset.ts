@@ -4,6 +4,7 @@ import { ModalState, ResetFunctions } from "../types";
 import {
   authNameState,
   authPasswordState,
+  isCreateTodoState,
   isLoginState,
   isRegisterState,
   modalErrorMsgState,
@@ -19,11 +20,12 @@ const useReset = (): ResetFunctions => {
   const setModal = useSetRecoilState<ModalState>(modalState);
   const setModalErrorMsg = useSetRecoilState<string>(modalErrorMsgState);
 
-  const setAuthName = useSetRecoilState<string>(authNameState);
-  const setAuthPassword = useSetRecoilState<string>(authPasswordState);
-
   const setIsRegister = useSetRecoilState<boolean>(isRegisterState);
   const setIsLogin = useSetRecoilState<boolean>(isLoginState);
+  const setIsCreateTodo = useSetRecoilState<boolean>(isCreateTodoState);
+
+  const setAuthName = useSetRecoilState<string>(authNameState);
+  const setAuthPassword = useSetRecoilState<string>(authPasswordState);
 
   /**
    * モーダルの状態を初期化する関数
@@ -39,6 +41,7 @@ const useReset = (): ResetFunctions => {
     setModalErrorMsg("");
     setIsRegister(false);
     setIsLogin(false);
+    setIsCreateTodo(false);
   };
 
   /**

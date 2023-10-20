@@ -3,7 +3,7 @@ import { ChangeEvent, FC } from "react";
 import { useRecoilState } from "recoil";
 
 import { authPasswordState } from "../../../recoil";
-import InputAuthPassword from "../../Form/InputAuthPassword";
+import InputAuthPassword from "../components/InputAuthPassword";
 
 /**
  * 認証パスワードの入力フォームコンテナコンポーネントです。

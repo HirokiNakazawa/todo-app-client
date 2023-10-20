@@ -10,6 +10,11 @@ export const currentCategoryState = atom<CurrentCategoryState>({
   },
 });
 
+export const mainCategoryState = atom<string>({
+  key: "mainCategory",
+  default: "",
+});
+
 export const todoState = atom<string>({
   key: "todo",
   default: "",

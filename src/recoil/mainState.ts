@@ -19,3 +19,8 @@ export const todoState = atom<string>({
   key: "todo",
   default: "",
 });
+
+export const limitDateState = atom<Date | null>({
+  key: "limitDate",
+  default: null,
+});

@@ -1,7 +1,10 @@
-import { Box, FormControl } from "@mui/material";
 import { FC } from "react";
-import InputTodoContainer from "../../Todo/containers/InputTodoContainer";
+
+import { Box, FormControl } from "@mui/material";
+
 import SelectCategoryContainer from "../../Todo/containers/SelectCategoryContainer";
+import InputTodoContainer from "../../Todo/containers/InputTodoContainer";
+import SelectLimitDateContainer from "../../Todo/containers/SelectLimitDateContainer";
 
 /**
  * タスク用のモーダルコンポーネントです。
@@ -19,6 +22,7 @@ const ModalTodoContent: FC = () => {
       >
         <SelectCategoryContainer />
         <InputTodoContainer />
+        <SelectLimitDateContainer />
       </Box>
     </FormControl>
   );

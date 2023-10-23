@@ -16,7 +16,7 @@ const ModalLoginContainer: FC = () => {
   const authenticationService: AuthenticationFunctions = useAuthentication();
 
   /**
-   * クリック時に状態を処理するコールバック
+   * クリック時にログインを実行し、状態を処理するコールバック
    *
    * @returns {void}
    */

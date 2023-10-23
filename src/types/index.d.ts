@@ -45,6 +45,14 @@ export type CreateCategoryFormData = {
   category: string;
 };
 
+export type TodoFormData = {
+  user_id: number;
+  category_id: number;
+  todo: string;
+  limit_date: string | null;
+  is_completed: boolean;
+};
+
 /**
  * APIレスポンス
  */
@@ -77,6 +85,14 @@ export type PostCreateCategoryResponse =
     }
   | { message: string };
 
+export type PostCreateTodoResponse =
+  | {
+      category: string;
+      todo: string;
+      limit_date: string;
+    }
+  | { message: string };
+
 /**
  * 汎用API関数の型定義
  */
@@ -99,6 +115,7 @@ export declare type ConvertFunctions = {
 export declare type ResetFunctions = {
   resetModalParams: () => void;
   resetAuthenticationParams: () => void;
+  resetTodoParams: () => void;
 };
 
 /**
@@ -137,4 +154,18 @@ export declare type CreateCategoryApiFunctions = {
  */
 export declare type CreateCategoryFunctions = {
   createCategory: () => Promise<void>;
+};
+
+/**
+ * タスクに関するAPI関数の型定義
+ */
+export declare type TodoApiFunctions = {
+  postCreateTodo: (data: TodoFormData) => Promise<PostCreateTodoResponse>;
+};
+
+/**
+ * タスクに関するカスタムフックの型定義
+ */
+export declare type TodoFunctions = {
+  createTodo: () => Promise<void>;
 };

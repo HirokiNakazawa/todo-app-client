@@ -7,8 +7,11 @@ import {
   isCreateTodoState,
   isLoginState,
   isRegisterState,
+  limitDateState,
+  mainCategoryState,
   modalErrorMsgState,
   modalState,
+  todoState,
 } from "../recoil";
 
 /**
@@ -26,6 +29,10 @@ const useReset = (): ResetFunctions => {
 
   const setAuthName = useSetRecoilState<string>(authNameState);
   const setAuthPassword = useSetRecoilState<string>(authPasswordState);
+
+  const setCategory = useSetRecoilState<string>(mainCategoryState);
+  const setTodo = useSetRecoilState<string>(todoState);
+  const setLimitDate = useSetRecoilState<Date | null>(limitDateState);
 
   /**
    * モーダルの状態を初期化する関数
@@ -54,7 +61,18 @@ const useReset = (): ResetFunctions => {
     setAuthPassword("");
   };
 
-  return { resetModalParams, resetAuthenticationParams };
+  /**
+   * タスク情報の状態を初期化する関数
+   *
+   * @returns {void}
+   */
+  const resetTodoParams = (): void => {
+    setCategory("");
+    setTodo("");
+    setLimitDate(null);
+  };
+
+  return { resetModalParams, resetAuthenticationParams, resetTodoParams };
 };
 
 export { useReset };

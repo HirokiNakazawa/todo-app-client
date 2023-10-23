@@ -1,7 +1,7 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import { CreateCategoryApiFunctions, CreateCategoryFunctions, UserState } from "../../../types";
-import { sidebarCategoryState, userState } from "../../../recoil";
+import { sidebarCategoryState, sidebarErrorMsgState, userState } from "../../../recoil";
 import { createCategoryApi } from "../api/createCategoryApi";
 
 /**
@@ -12,6 +12,8 @@ import { createCategoryApi } from "../api/createCategoryApi";
 const useCreateCategory = (): CreateCategoryFunctions => {
   const user = useRecoilValue<UserState>(userState);
   const category = useRecoilValue<string>(sidebarCategoryState);
+
+  const setSidebarErrorMsg = useSetRecoilState<string>(sidebarErrorMsgState);
 
   const apiService: CreateCategoryApiFunctions = createCategoryApi();
 
@@ -27,6 +29,7 @@ const useCreateCategory = (): CreateCategoryFunctions => {
       console.log(response);
     } catch (error) {
       console.log(error);
+      setSidebarErrorMsg("カテゴリ追加に失敗しました");
     }
   };
 

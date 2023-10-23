@@ -8,6 +8,7 @@ import {
   UpdateFunctions,
   UserCategoryState,
   UserState,
+  UserTodoState,
 } from "../../../types";
 import {
   limitDateState,
@@ -55,15 +56,38 @@ const useTodo = (): TodoFunctions => {
           limit_date: limitDate ? dayjs(limitDate).format("YYYY/MM/DD") : null,
           is_completed: false,
         };
-        const response = apiService.postCreateTodo(data);
+        const response = await apiService.postCreateTodo(data);
         console.log(response);
-        handleTodo();
+        await handleTodo();
       } else {
         console.log("カテゴリが存在しません");
       }
     } catch (error) {
       console.log(error);
       setModalErrorMsg("タスク作成に失敗しました");
+    }
+  };
+
+  /**
+   * タスクの状態更新を行う関数
+   *
+   * @param {UserTodoState} todo - 更新対象のタスク
+   * @returns {Promise<void>}
+   */
+  const updateTodoStatus = async (todo: UserTodoState): Promise<void> => {
+    try {
+      const data = {
+        id: todo.id,
+        category_id: todo.categoryId,
+        todo: todo.todo,
+        limit_date: todo.limitDate,
+        is_completed: todo.isCompleted === true ? false : true,
+      };
+      const response = await apiService.postUpdateTodo(data);
+      console.log(response);
+      await handleTodo();
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -79,7 +103,7 @@ const useTodo = (): TodoFunctions => {
     await updateService.updateUserTodoList(user.id);
   };
 
-  return { createTodo };
+  return { createTodo, updateTodoStatus };
 };
 
 export { useTodo };

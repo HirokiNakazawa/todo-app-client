@@ -46,7 +46,8 @@ export type CreateCategoryFormData = {
 };
 
 export type TodoFormData = {
-  user_id: number;
+  id?: number;
+  user_id?: number;
   category_id: number;
   todo: string;
   limit_date: string | null;
@@ -90,6 +91,15 @@ export type PostCreateTodoResponse =
       category: string;
       todo: string;
       limit_date: string;
+    }
+  | { message: string };
+
+export type PostUpdateTodoResponse =
+  | {
+      category: string;
+      todo: string;
+      limit_date: string;
+      is_completed: boolean;
     }
   | { message: string };
 
@@ -161,6 +171,7 @@ export declare type CreateCategoryFunctions = {
  */
 export declare type TodoApiFunctions = {
   postCreateTodo: (data: TodoFormData) => Promise<PostCreateTodoResponse>;
+  postUpdateTodo: (data: TodoFormData) => Promise<PostUpdateTodoResponse>;
 };
 
 /**
@@ -168,4 +179,5 @@ export declare type TodoApiFunctions = {
  */
 export declare type TodoFunctions = {
   createTodo: () => Promise<void>;
+  updateTodoStatus: (todo: UserTodoState) => Promise<void>;
 };

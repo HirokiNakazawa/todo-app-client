@@ -42,7 +42,7 @@ const useConvert = (): ConvertFunctions => {
         categoryId: item.category_id,
         todo: item.todo,
         limitDate: item.limit_date,
-        isCompleted: item.is_completed,
+        isCompleted: Boolean(item.is_completed),
         category: item.category,
       })
     );

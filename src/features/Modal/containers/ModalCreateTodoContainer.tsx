@@ -18,11 +18,11 @@ const ModalCreateTodoContainer: FC = () => {
   /**
    * クリック時にタスクを作成し、状態を処理するコールバック
    *
-   * @returns {void}
+   * @returns {Promise<void>}
    */
-  const handleCreateTodo = (): void => {
+  const handleCreateTodo = async (): Promise<void> => {
     console.log("タスク作成ボタンがクリックされました");
-    todoService.createTodo();
+    await todoService.createTodo();
   };
 
   return <ModalButton text={modal.buttonText} handleClick={handleCreateTodo} />;

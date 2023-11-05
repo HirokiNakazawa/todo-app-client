@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 
 import { CurrentCategoryState, UserTodoState } from "../../../types";
 import UpdateStatusContainer from "../containers/UpdateStatusContainer";
+import DeleteTodoContainer from "../containers/DeleteTodoContainer";
 
 /**
  * タスク一覧テーブルのテーブルデータコンポーネント型定義
@@ -38,7 +39,9 @@ const TodoTableRow: FC<TodoTableRowProps> = (props: TodoTableRowProps) => {
             <TableCell align="center">
               <UpdateStatusContainer todo={item} />
             </TableCell>
-            <TableCell></TableCell>
+            <TableCell>
+              <DeleteTodoContainer todo={item} />
+            </TableCell>
           </TableRow>
         ) : null
       )}

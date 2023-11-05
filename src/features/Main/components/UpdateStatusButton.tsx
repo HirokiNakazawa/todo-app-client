@@ -29,7 +29,7 @@ const UpdateStatusButton: FC<UpdateStatusButtonProps> = (props: UpdateStatusButt
       onClick={() => handleClick(todo)}
       color={todo.isCompleted === true ? "success" : "primary"}
     >
-      {todo.isCompleted === true ? "完了" : "未完了"}
+      {todo.isCompleted === true ? "完了" : "未完"}
     </Button>
   );
 };

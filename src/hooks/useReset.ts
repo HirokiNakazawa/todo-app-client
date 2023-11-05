@@ -1,6 +1,6 @@
 import { useSetRecoilState } from "recoil";
 
-import { ModalState, ResetFunctions } from "../types";
+import { DialogState, ModalState, ResetFunctions } from "../types";
 import {
   authNameState,
   authPasswordState,
@@ -13,6 +13,7 @@ import {
   modalState,
   todoState,
 } from "../recoil";
+import { dialogState } from "../recoil/dialogState";
 
 /**
  * 状態の初期化に関するカスタムフックです。
@@ -22,6 +23,8 @@ import {
 const useReset = (): ResetFunctions => {
   const setModal = useSetRecoilState<ModalState>(modalState);
   const setModalErrorMsg = useSetRecoilState<string>(modalErrorMsgState);
+
+  const setDialog = useSetRecoilState<DialogState>(dialogState);
 
   const setIsRegister = useSetRecoilState<boolean>(isRegisterState);
   const setIsLogin = useSetRecoilState<boolean>(isLoginState);
@@ -52,6 +55,15 @@ const useReset = (): ResetFunctions => {
   };
 
   /**
+   * ダイアログの状態を初期化する関数
+   *
+   * @returns {void}
+   */
+  const resetDialogParams = (): void => {
+    setDialog({ isOpen: false, title: "", text: "" });
+  };
+
+  /**
    * 認証情報の状態を初期化する関数
    *
    * @returns {void}
@@ -72,7 +84,7 @@ const useReset = (): ResetFunctions => {
     setLimitDate(null);
   };
 
-  return { resetModalParams, resetAuthenticationParams, resetTodoParams };
+  return { resetModalParams, resetDialogParams, resetAuthenticationParams, resetTodoParams };
 };
 
 export { useReset };

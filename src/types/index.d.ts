@@ -7,6 +7,12 @@ export type ModalState = {
   buttonText: string;
 };
 
+export type DialogState = {
+  isOpen: boolean;
+  title: string;
+  text: string;
+};
+
 export type UserState = {
   id: number;
   name: string;
@@ -124,6 +130,7 @@ export declare type ConvertFunctions = {
  */
 export declare type ResetFunctions = {
   resetModalParams: () => void;
+  resetDialogParams: () => void;
   resetAuthenticationParams: () => void;
   resetTodoParams: () => void;
 };

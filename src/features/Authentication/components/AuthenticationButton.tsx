@@ -15,6 +15,8 @@ type AuthenticationButtonProps = {
 
 /**
  * 認証関連のボタンコンポーネントです。
+ *
+ * @param {AuthenticationButtonProps} props
  */
 const AuthenticationButton: FC<AuthenticationButtonProps> = (props: AuthenticationButtonProps) => {
   const { text, handleClick } = props;

@@ -14,6 +14,7 @@ import {
   limitDateState,
   mainCategoryState,
   modalErrorMsgState,
+  todoIdState,
   todoState,
   userCategoryListState,
   userState,
@@ -33,6 +34,7 @@ const useTodo = (): TodoFunctions => {
   const category = useRecoilValue<string>(mainCategoryState);
   const todo = useRecoilValue<string>(todoState);
   const limitDate = useRecoilValue<Date | null>(limitDateState);
+  const todoId = useRecoilValue<number>(todoIdState);
 
   const setModalErrorMsg = useSetRecoilState<string>(modalErrorMsgState);
 
@@ -92,6 +94,21 @@ const useTodo = (): TodoFunctions => {
   };
 
   /**
+   * タスクの削除を行う関数
+   *
+   * @returns {Promise<void>}
+   */
+  const deleteTodo = async (): Promise<void> => {
+    try {
+      const response = await apiService.postDeleteTodo(todoId);
+      console.log(response);
+      await updateService.updateUserTodoList(user.id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  /**
    * タスク作成、編集に成功した場合に実行される関数
    *
    * @returns {Promise<void>}
@@ -103,7 +120,7 @@ const useTodo = (): TodoFunctions => {
     await updateService.updateUserTodoList(user.id);
   };
 
-  return { createTodo, updateTodoStatus };
+  return { createTodo, updateTodoStatus, deleteTodo };
 };
 
 export { useTodo };

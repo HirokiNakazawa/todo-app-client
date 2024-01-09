@@ -1,7 +1,13 @@
 import axios from "axios";
 
 import { API_BASE_URL } from "../../../config/config";
-import { PostCreateTodoResponse, PostUpdateTodoResponse, TodoApiFunctions, TodoFormData } from "../../../types";
+import {
+  PostCreateTodoResponse,
+  PostDeleteTodoResponse,
+  PostUpdateTodoResponse,
+  TodoApiFunctions,
+  TodoFormData,
+} from "../../../types";
 
 /**
  * タスクに関するAPIをハンドリングするカスタムフックです。
@@ -43,7 +49,24 @@ const todoApi = (): TodoApiFunctions => {
     }
   };
 
-  return { postCreateTodo, postUpdateTodo };
+  /**
+   * タスクを削除するAPI関数
+   *
+   * @param {number} id - タスクID
+   * @returns {Promise<PostDeleteTodoResponse>} タスク削除の結果を表すPromise
+   * @throws {Error} API呼び出し時のエラー
+   */
+  const postDeleteTodo = async (id: number): Promise<PostDeleteTodoResponse> => {
+    try {
+      const url = `${API_BASE_URL}/todos/delete/${id}`;
+      const response = await axios.delete(url);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  return { postCreateTodo, postUpdateTodo, postDeleteTodo };
 };
 
 export { todoApi };

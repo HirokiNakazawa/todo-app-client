@@ -1,7 +1,9 @@
 import { FC } from "react";
 
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+
 import DialogCloseContainer from "../containers/DialogCloseContainer";
+import DialogDeleteContainer from "../containers/DialogDeleteContainer";
 
 /**
  * カスタムダイアログコンポーネントの型定義
@@ -24,10 +26,6 @@ type CustomDialogProps = {
 const CustomDialog: FC<CustomDialogProps> = (props: CustomDialogProps) => {
   const { isOpen, title, text } = props;
 
-  const handleClick = () => {
-    console.log("クリック");
-  };
-
   return (
     <Dialog open={isOpen}>
       <DialogTitle>{title}</DialogTitle>
@@ -36,9 +34,7 @@ const CustomDialog: FC<CustomDialogProps> = (props: CustomDialogProps) => {
       </DialogContent>
       <DialogActions>
         <DialogCloseContainer />
-        <Button onClick={handleClick} color="error">
-          削除
-        </Button>
+        <DialogDeleteContainer />
       </DialogActions>
     </Dialog>
   );

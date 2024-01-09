@@ -109,6 +109,13 @@ export type PostUpdateTodoResponse =
     }
   | { message: string };
 
+export type PostDeleteTodoResponse =
+  | {
+      id: number;
+      todo: string;
+    }
+  | { message: string };
+
 /**
  * 汎用API関数の型定義
  */
@@ -179,6 +186,7 @@ export declare type CreateCategoryFunctions = {
 export declare type TodoApiFunctions = {
   postCreateTodo: (data: TodoFormData) => Promise<PostCreateTodoResponse>;
   postUpdateTodo: (data: TodoFormData) => Promise<PostUpdateTodoResponse>;
+  postDeleteTodo: (id: number) => Promise<PostDeleteTodoResponse>;
 };
 
 /**
@@ -187,4 +195,5 @@ export declare type TodoApiFunctions = {
 export declare type TodoFunctions = {
   createTodo: () => Promise<void>;
   updateTodoStatus: (todo: UserTodoState) => Promise<void>;
+  deleteTodo: () => Promise<void>;
 };

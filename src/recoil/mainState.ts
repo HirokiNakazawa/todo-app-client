@@ -24,3 +24,8 @@ export const limitDateState = atom<Date | null>({
   key: "limitDate",
   default: null,
 });
+
+export const todoIdState = atom<number>({
+  key: "todoId",
+  default: 0,
+});

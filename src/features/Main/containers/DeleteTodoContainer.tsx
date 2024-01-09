@@ -3,7 +3,7 @@ import { FC } from "react";
 import { useSetRecoilState } from "recoil";
 
 import { DialogState, UserTodoState } from "../../../types";
-import { dialogState } from "../../../recoil/dialogState";
+import { dialogState, todoIdState } from "../../../recoil";
 import DeleteTodoButton from "../components/DeleteTodoButton";
 
 /**
@@ -23,6 +23,7 @@ type DeleteTodoContainerProps = {
 const DeleteTodoContainer: FC<DeleteTodoContainerProps> = (props: DeleteTodoContainerProps) => {
   const { todo } = props;
 
+  const setTodoId = useSetRecoilState<number>(todoIdState);
   const setDialog = useSetRecoilState<DialogState>(dialogState);
 
   /**
@@ -33,6 +34,7 @@ const DeleteTodoContainer: FC<DeleteTodoContainerProps> = (props: DeleteTodoCont
   const handleSetState = (): void => {
     console.log(todo);
     console.log("タスク削除ボタンがクリックされました");
+    setTodoId(todo.id);
     setDialog({
       isOpen: true,
       title: "確認",

@@ -1,10 +1,11 @@
 import { FC } from "react";
 
-import { TableCell, TableRow } from "@mui/material";
+import { Box, TableCell, TableRow } from "@mui/material";
 import dayjs from "dayjs";
 
 import { CurrentCategoryState, UserTodoState } from "../../../types";
 import UpdateStatusContainer from "../containers/UpdateStatusContainer";
+import UpdateTodoContainer from "../containers/UpdateTodoContainer";
 import DeleteTodoContainer from "../containers/DeleteTodoContainer";
 
 /**
@@ -40,7 +41,10 @@ const TodoTableRow: FC<TodoTableRowProps> = (props: TodoTableRowProps) => {
               <UpdateStatusContainer todo={item} />
             </TableCell>
             <TableCell>
-              <DeleteTodoContainer todo={item} />
+              <Box sx={{ display: "flex", gap: 2 }}>
+                <UpdateTodoContainer todo={item} />
+                <DeleteTodoContainer todo={item} />
+              </Box>
             </TableCell>
           </TableRow>
         ) : null

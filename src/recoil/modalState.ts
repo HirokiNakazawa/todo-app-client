@@ -22,6 +22,11 @@ export const isCreateTodoState = atom<boolean>({
   default: false,
 });
 
+export const isUpdateTodoState = atom<boolean>({
+  key: "isUpdateTodoModal",
+  default: false,
+});
+
 export const modalErrorMsgState = atom<string>({
   key: "modalErrorMsg",
   default: "",

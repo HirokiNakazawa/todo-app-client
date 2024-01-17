@@ -194,6 +194,7 @@ export declare type TodoApiFunctions = {
  */
 export declare type TodoFunctions = {
   createTodo: () => Promise<void>;
+  updateTodo: (todo: UserTodoState) => Promise<void>;
   updateTodoStatus: (todo: UserTodoState) => Promise<void>;
   deleteTodo: () => Promise<void>;
 };

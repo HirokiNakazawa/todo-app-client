@@ -71,6 +71,29 @@ const useTodo = (): TodoFunctions => {
   };
 
   /**
+   * タスクの更新を行う関数
+   *
+   * @param {UserTodoState} todo - 更新対象のタスク
+   * @returns {Promise<void>}
+   */
+  const updateTodo = async (todo: UserTodoState): Promise<void> => {
+    try {
+      const data = {
+        id: todo.id,
+        category_id: todo.categoryId,
+        todo: todo.todo,
+        limit_date: todo.limitDate,
+        is_completed: todo.isCompleted === true ? false : true,
+      };
+      const response = await apiService.postUpdateTodo(data);
+      console.log(response);
+      await handleTodo();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  /**
    * タスクの状態更新を行う関数
    *
    * @param {UserTodoState} todo - 更新対象のタスク
@@ -120,7 +143,7 @@ const useTodo = (): TodoFunctions => {
     await updateService.updateUserTodoList(user.id);
   };
 
-  return { createTodo, updateTodoStatus, deleteTodo };
+  return { createTodo, updateTodo, updateTodoStatus, deleteTodo };
 };
 
 export { useTodo };

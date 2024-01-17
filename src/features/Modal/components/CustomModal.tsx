@@ -14,12 +14,14 @@ import ModalTodoContent from "./ModalTodoContent";
  * @property {boolean} isRegister - ユーザー登録フラグ
  * @property {boolean} isLogin - ログインフラグ
  * @property {boolean} isCreateTodo - タスク作成フラグ
+ * @property {boolean} isUpdateTodo - タスク更新フラグ
  */
 type CustomModalProps = {
   isOpen: boolean;
   isRegister: boolean;
   isLogin: boolean;
   isCreateTodo: boolean;
+  isUpdateTodo: boolean;
 };
 
 /**
@@ -28,7 +30,7 @@ type CustomModalProps = {
  * @param {CustomModalProps} props
  */
 const CustomModal: FC<CustomModalProps> = (props: CustomModalProps) => {
-  const { isOpen, isRegister, isLogin, isCreateTodo } = props;
+  const { isOpen, isRegister, isLogin, isCreateTodo, isUpdateTodo } = props;
 
   return (
     <Modal open={isOpen}>
@@ -55,7 +57,7 @@ const CustomModal: FC<CustomModalProps> = (props: CustomModalProps) => {
         >
           <ModalHeaderContainer />
           {isRegister || isLogin ? <ModalAuthContent /> : null}
-          {isCreateTodo ? <ModalTodoContent /> : null}
+          {isCreateTodo || isUpdateTodo ? <ModalTodoContent /> : null}
           <ModalFooterContainer />
         </Box>
       </Box>

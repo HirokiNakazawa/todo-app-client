@@ -35,13 +35,32 @@ const todoApi = (): TodoApiFunctions => {
   /**
    * タスクを更新するAPI関数
    *
-   * @param {TodoFormData} data - タスク情報
+   * @param {number} id - タスクID
+   * @param {TodoFormData} data - タスク更新後の状態フラグ
    * @returns {Promise<PostUpdateTodoResponse>} タスク更新の結果を表すPromise
    * @throws {Error} API呼び出し時のエラー
    */
-  const postUpdateTodo = async (data: TodoFormData): Promise<PostUpdateTodoResponse> => {
+  const postUpdateTodo = async (id: number, data: TodoFormData): Promise<PostUpdateTodoResponse> => {
     try {
-      const url = `${API_BASE_URL}/todos/update/${data.id}`;
+      const url = `${API_BASE_URL}/todos/update/${id}`;
+      const response = await axios.put(url, data);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  /**
+   * タスクの状態を更新するAPI関数
+   *
+   * @param {number} id - タスクID
+   * @param {TodoFormData} data - タスク更新後の状態フラグ
+   * @returns {Promise<PostUpdateTodoResponse>} タスク更新の結果を表すPromise
+   * @throws {Error} API呼び出し時のエラー
+   */
+  const postUpdateTodoStatus = async (id: number, data: TodoFormData): Promise<PostUpdateTodoResponse> => {
+    try {
+      const url = `${API_BASE_URL}/todos/update/${id}`;
       const response = await axios.put(url, data);
       return response.data;
     } catch (error) {
@@ -66,7 +85,7 @@ const todoApi = (): TodoApiFunctions => {
     }
   };
 
-  return { postCreateTodo, postUpdateTodo, postDeleteTodo };
+  return { postCreateTodo, postUpdateTodo, postUpdateTodoStatus, postDeleteTodo };
 };
 
 export { todoApi };

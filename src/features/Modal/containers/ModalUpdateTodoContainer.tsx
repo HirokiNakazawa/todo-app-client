@@ -1,5 +1,7 @@
 import { FC } from "react";
+
 import { useRecoilValue } from "recoil";
+
 import { ModalState, TodoFunctions } from "../../../types";
 import { modalState } from "../../../recoil";
 import { useTodo } from "../../Todo/hooks/useTodo";
@@ -20,6 +22,7 @@ const ModalUpdateTodoContainer: FC = () => {
    */
   const handleUpdateTodo = async (): Promise<void> => {
     console.log("タスク更新ボタンがクリックされました");
+    todoService.updateTodo();
   };
 
   return <ModalButton text={modal.buttonText} handleClick={handleUpdateTodo} />;

@@ -73,21 +73,23 @@ const useTodo = (): TodoFunctions => {
   /**
    * タスクの更新を行う関数
    *
-   * @param {UserTodoState} todo - 更新対象のタスク
    * @returns {Promise<void>}
    */
-  const updateTodo = async (todo: UserTodoState): Promise<void> => {
+  const updateTodo = async (): Promise<void> => {
     try {
-      const data = {
-        id: todo.id,
-        category_id: todo.categoryId,
-        todo: todo.todo,
-        limit_date: todo.limitDate,
-        is_completed: todo.isCompleted === true ? false : true,
-      };
-      const response = await apiService.postUpdateTodo(data);
-      console.log(response);
-      await handleTodo();
+      const selectedCategory = categoryList.find((item) => item.category === category);
+      if (selectedCategory?.id) {
+        const data = {
+          category_id: selectedCategory?.id,
+          todo: todo,
+          limit_date: limitDate ? dayjs(limitDate).format("YYYY/MM/DD") : null,
+        };
+        const response = await apiService.postUpdateTodo(todoId, data);
+        console.log(response);
+        await handleTodo();
+      } else {
+        console.log("カテゴリが存在しません");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -102,13 +104,9 @@ const useTodo = (): TodoFunctions => {
   const updateTodoStatus = async (todo: UserTodoState): Promise<void> => {
     try {
       const data = {
-        id: todo.id,
-        category_id: todo.categoryId,
-        todo: todo.todo,
-        limit_date: todo.limitDate,
         is_completed: todo.isCompleted === true ? false : true,
       };
-      const response = await apiService.postUpdateTodo(data);
+      const response = await apiService.postUpdateTodoStatus(todo.id, data);
       console.log(response);
       await handleTodo();
     } catch (error) {

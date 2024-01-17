@@ -4,7 +4,14 @@ import { useSetRecoilState } from "recoil";
 import dayjs from "dayjs";
 
 import { ModalState, UserTodoState } from "../../../types";
-import { isUpdateTodoState, limitDateState, mainCategoryState, modalState, todoState } from "../../../recoil";
+import {
+  isUpdateTodoState,
+  limitDateState,
+  mainCategoryState,
+  modalState,
+  todoIdState,
+  todoState,
+} from "../../../recoil";
 import UpdateTodoButton from "../components/UpdateTodoButton";
 
 /**
@@ -24,6 +31,7 @@ type UpdateTodoContainerProps = {
 const UpdateTodoContainer: FC<UpdateTodoContainerProps> = (props: UpdateTodoContainerProps) => {
   const { todo } = props;
 
+  const setTodoId = useSetRecoilState<number>(todoIdState);
   const setCategory = useSetRecoilState<string>(mainCategoryState);
   const setTodo = useSetRecoilState<string>(todoState);
   const setLimitDate = useSetRecoilState<Date | null>(limitDateState);
@@ -38,6 +46,7 @@ const UpdateTodoContainer: FC<UpdateTodoContainerProps> = (props: UpdateTodoCont
   const handleUpdateTodo = (): void => {
     console.log(todo);
     console.log("タスク編集ボタンがクリックされました");
+    setTodoId(todo.id);
     setCategory(todo.category);
     setTodo(todo.todo);
     setLimitDate(todo.limitDate ? dayjs(todo.limitDate).toDate() : null);
